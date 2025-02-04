@@ -1,1 +1,1 @@
-#White-Tech-Academy
+# WTA
