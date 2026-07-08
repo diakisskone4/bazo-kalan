@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscription</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #e9ebee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+    .container {
+      width: 60%;
+      background-color: #fafafa;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 50px;
+    }
+    .register {
+      text-align: center;
+    }
+    .register h2 {
+      margin-bottom: 30px;
+      font-size: 2.5em;
+      color: #9526a9;
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: bold;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button[type="submit"] {
+      width: 100%;
+      background-color: #9526a9;
+      color: #fff;
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 4px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #741c84;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #9526a9;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    small.text-danger {
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="register">
+    <h2>Créer un compte</h2>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" id="username" class="form-control" th:field="*{username}" required>
+        <small class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" th:field="*{email}" required>
+        <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" class="form-control" th:field="*{password}" required>
+        <small class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirmer le mot de passe</label>
+        <input type="password" id="confirmPassword" class="form-control" th:field="*{confirmPassword}" required>
+        <small class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></small>
+      </div>
+
+      <button type="submit">S'inscrire</button>
+    </form>
+
+    <a th:href="@{/login}">Déjà un compte ? Connectez-vous</a>
+  </div>
+</div>
+</body>
+</html>
